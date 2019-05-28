@@ -73,4 +73,7 @@ while (<$ifh>) {
 $port->write("\x13");
 sleep(1);
 
+close ($ifh);
+
+
 exit 0;
