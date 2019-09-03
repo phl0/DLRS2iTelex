@@ -79,6 +79,9 @@ sleep(1);
 open($ifh, '<', $file) # always use a variable here containing filename
    or die "Unable to open file $file, $!";
 
+# Add some CR/LF before outputting the content
+$port->write("\r\n\r\n");
+
 while (<$ifh>) {
  $port->write("$_");
  my $delay = length($_) * 0.2;
