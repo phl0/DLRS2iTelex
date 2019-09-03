@@ -34,6 +34,21 @@ open(my $ofh, '>', $file) # always use a variable here containing filename
 
 while (<$ifh>) {
    my $line = $_;
+   $line =~ s/ä/ae/g;
+
+   # Do some character replacement for several characters
+   # the telex machine cannot print
+   $line =~ s/Ä/Ae/g;
+   $line =~ s/ö/oe/g;
+   $line =~ s/Ö/Oe/g;
+   $line =~ s/ü/ue/g;
+   $line =~ s/Ü/Ue/g;
+   $line =~ s/ß/ss/g;
+   $line =~ s/@/(at)/g;
+   $line =~ s/±/+-/g;
+   $line =~ s/"/''/g;
+   $line =~ s/\[/(/g;
+   $line =~ s/\]/)/g;
    chomp($line);
    if (length($line) > $linewidth) {
       print $ofh wrap('', '', $line) . "\n";
